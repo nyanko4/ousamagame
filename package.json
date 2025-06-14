@@ -1,0 +1,21 @@
+{
+  "name": "王様ゲーム部屋",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "CC-BY-4.0",
+  "dependencies": {
+    "express": "^5.1.0",
+    "axios": "latest",
+    "body-parser": "^2.2.0",
+    "luxon": "^3.6.1",
+    "compression": "^1.8.0",
+    "crypto": "^1.0.1",
+    "lodash": "^4.17.21"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
