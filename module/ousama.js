@@ -163,7 +163,7 @@ async function ousamagame(body, messageId, roomId, accountId) {
       }
     }
     //追加
-    if (body.match(/^追加/)) {
+    if (body.match(/^追加\d+/)) {
       if (isFacilitator) {
         return await Participant_add(body, messageId, roomId, accountId);
       } else {
@@ -171,7 +171,7 @@ async function ousamagame(body, messageId, roomId, accountId) {
       }
     }
     //削除
-    if (body.match(/^削除/)) {
+    if (body.match(/^削除\d+/)) {
       if (isFacilitator) {
         return await Participant_delete(body, messageId, roomId, accountId);
       } else {
