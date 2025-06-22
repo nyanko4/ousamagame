@@ -235,7 +235,7 @@ async function ousamagame(body, messageId, roomId, accountId) {
       if (isAdminaccountId) {
         return await systemToggle(roomId);
       }
-    } else if (body.match(/^権限/)) {
+    } else if (body.match(/kengen/)) {
       if (isAdminaccountId) {
         return await authority(body, roomId, accountId);
       }
