@@ -148,7 +148,7 @@ async function log(
       } else {
         if (event === "message_updated") {
           sendchatwork(
-            `${name}\n[qt][qtmeta aid=${accountId} time=${updatetime}]${body}[/qt]`,
+            `${name} \n[qt][qtmeta aid=${accountId} time=${updatetime}]${body}[/qt]`,
             388502383
           );
         } else {
