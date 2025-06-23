@@ -1,7 +1,7 @@
 {
-  "participant": "9868869,9863993,9884557,10330449,9490025,9487124,9592816",
-  "kingAccountId": "9863993",
-  "otherParticipantsInfo": "1:[piconname:9868869]\n2:[piconname:9487124]\n3:[piconname:10330449]\n4:[piconname:9884557]\n5:[piconname:9490025]\n6:[piconname:9592816]\n",
+  "participant": "9868869,9863993,9884557,9487124,9592816",
+  "kingAccountId": "9868869",
+  "otherParticipantsInfo": "1:[piconname:9884557]\n2:[piconname:9487124]\n3:[piconname:9592816]\n4:[piconname:9863993]\n",
   "facilitator": "9868869",
   "result_display": "済",
   "mix": "getRandomUniqueElements",
