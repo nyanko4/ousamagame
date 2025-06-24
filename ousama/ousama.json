@@ -1,9 +1,9 @@
 {
-  "participant": "9559196,9859068,10315831,10330449",
-  "kingAccountId": "9559196",
-  "otherParticipantsInfo": "1:[piconname:10330449]\n2:[piconname:10315831]\n3:[piconname:9859068]\n",
+  "participant": "9559196,9859068,10315831,10330449,9908175",
+  "kingAccountId": "10315831",
+  "otherParticipantsInfo": "1:[piconname:9908175]\n2:[piconname:9559196]\n3:[piconname:10330449]\n4:[piconname:9859068]\n",
   "facilitator": "9859068",
-  "result_display": "未",
+  "result_display": "済",
   "mix": "getRandomUniqueElements",
   "canExit": "可",
   "deathmatch": "off",
