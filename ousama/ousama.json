@@ -1,11 +1,11 @@
 {
-  "participant": "9908175,9868869",
+  "participant": "9908175,9868869,9632991",
   "kingAccountId": "9868869",
-  "otherParticipantsInfo": "1:[piconname:9908175]\n",
+  "otherParticipantsInfo": "1:[piconname:9908175]\n2:[piconname:9632991]\n",
   "facilitator": "9908175",
   "result_display": "未",
   "mix": "getRandomUniqueElements",
   "canExit": "不",
-  "deathmatch": "on",
+  "deathmatch": "off",
   "system": "起動中"
 }
