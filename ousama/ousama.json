@@ -3,9 +3,9 @@
   "kingAccountId": "9632991",
   "otherParticipantsInfo": "1:[piconname:9974911]\n2:[piconname:9574092]\n",
   "facilitator": "9632991",
-  "result_display": "済",
+  "result_display": "未",
   "mix": "getRandomUniqueElements",
   "canExit": "不",
-  "deathmatch": "on",
+  "deathmatch": "off",
   "system": "起動中"
 }
