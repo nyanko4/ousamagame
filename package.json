@@ -10,7 +10,8 @@
     "luxon": "^3.6.1",
     "compression": "^1.8.0",
     "crypto": "^1.0.1",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "@supabase/supabase-js": "^2.50.2"
   },
   "engines": {
     "node": "16.x"

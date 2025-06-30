@@ -1,4 +1,4 @@
-const fs = require("fs").promises;
+const { writeFileAsync, readFileAsync } = require("../lib/supabase_file"); // 置き換え版のパス
 const _ = require("lodash");
 const axios = require("axios");
 const CHATWORK_API_TOKEN = process.env.CWapitoken;
@@ -7,39 +7,6 @@ const { sendchatwork } = require("../ctr/message");
 const AdminaccountId = 9487124;
 const filePath = "./ousama/ousama.json";
 
-//　ファイルに書き込む
-async function writeFileAsync(keyToUpdate, newValue) {
-  try {
-    const fileContent = await fs.readFile(filePath, "utf8");
-    const jsonData = JSON.parse(fileContent);
-    if (jsonData.hasOwnProperty(keyToUpdate)) {
-      jsonData[keyToUpdate] = newValue.toString();
-      //console.log(`キー "${keyToUpdate}" の値を "${newValue}" に更新しました。`); //デバッグ用
-    } else {
-      console.log(
-        `指定されたキー "${keyToUpdate}" はJSONファイルに存在しません。`
-      );
-      return;
-    }
-    const updatedJsonData = JSON.stringify(jsonData, null, 2);
-    await fs.writeFile(filePath, updatedJsonData, "utf8");
-    console.log(`ファイル "${keyToUpdate}" への書き込みが完了しました。`);
-  } catch (error) {
-    console.error(`ファイルの読み込みまたは書き込みに失敗しました:`, error);
-  }
-}
-
-// ファイルを読み込む
-async function readFileAsync(key) {
-  try {
-    const fileContent = await fs.readFile(filePath, "utf8");
-    const jsonData = JSON.parse(fileContent);
-    return jsonData[key];
-  } catch (error) {
-    console.error(`読み込みに失敗しました ${key}:`, error);
-    throw error;
-  }
-}
 
 // 混ぜ方
 function getShuffleFunction(method) {
