@@ -191,7 +191,7 @@ async function ousamagame(body, messageId, roomId, accountId) {
         return await facilitator(body, messageId, roomId, accountId);
       } else {
         await sendchatwork(
-          `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\n管理者のみ利用可能です`,
+          `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\n管理者のみ利用可能ですにゃ`,
           roomId
         );
       }
@@ -339,7 +339,6 @@ async function Participant_clear(messageId, roomId, accountId) {
 // 追加
 async function Participant_add(body, messageId, roomId, accountId) {
   try {
-    //if (body.includes(AdminaccountId)) {await sendchatwork(`[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\n風呂入ってきます`,roomId);return;}
     const Id = body.replace("追加", "");
     let participant = await readFileAsync("participant");
     if (participant.includes(Id)) {
@@ -493,13 +492,13 @@ async function exitToggle(messageId, roomId, accountId) {
     if (canExit == "可") {
       await writeFileAsync("canExit", "不");
       await sendchatwork(
-        `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\n使用不可になりましたにゃ`,
+        `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\n使用不可ににゃりましたにゃ`,
         roomId
       );
     } else if (canExit == "不") {
       await writeFileAsync("canExit", "可");
       await sendchatwork(
-        `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\n使用可能になりましたにゃ`,
+        `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\n使用可能ににゃりましたにゃ`,
         roomId
       );
     }
@@ -554,13 +553,13 @@ async function deathmatch(messageId, roomId, accountId) {
       await writeFileAsync("deathmatch", "off");
       await writeFileAsync("result_display", "済");
       await sendchatwork(
-        `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nデスマッチモードがオフになりましたにゃ`,
+        `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nデスマッチモードがオフににゃりましたにゃ`,
         roomId
       );
     } else if (deathmatch == "off") {
       await writeFileAsync("deathmatch", "on");
       await sendchatwork(
-        `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nデスマッチモードがオンになりましたにゃ`,
+        `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nデスマッチモードがオンににゃりましたにゃ`,
         roomId
       );
     }
