@@ -1,6 +1,6 @@
 const CHATWORK_API_TOKEN = process.env.CWapitoken;
 const fs = require("fs");
-const fsp = require("fs").promises;
+const { readFileAsync } = require("../lib/supabase_file"); // 置き換え版のパス
 const axios = require("axios");
 const FormData = require("form-data");
 const reqcheck = require("../middleware/sign");
