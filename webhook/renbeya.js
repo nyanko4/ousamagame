@@ -1,5 +1,5 @@
 const CHATWORK_API_TOKEN = process.env.CWapitoken;
-const { readFileAsync } = require("../lib/supabase_file"); // 置き換え版のパス
+const { readFileAsync } = require("../lib/supabase_file_r"); // 置き換え版のパス
 const axios = require("axios");
 const reqcheck = require("../middleware/rsign");
 const ousama = require("../module/rousama");
