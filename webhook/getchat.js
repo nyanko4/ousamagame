@@ -12,18 +12,6 @@ const arashi = require("../ctr/arashi");
 const filePath = "./ousama/ousama.json";
 const AdminaccountId = 9487124;
 
-// ファイルを読み込む
-async function readFileAsync(key) {
-  try {
-    const fileContent = await fsp.readFile(filePath, "utf8");
-    const jsonData = JSON.parse(fileContent);
-    return jsonData[key];
-  } catch (error) {
-    console.error(`読み込みに失敗しました ${key}:`, error);
-    throw error;
-  }
-}
-
 
 async function getchat(req, res) {
   const c = await reqcheck(req);
