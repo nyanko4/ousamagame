@@ -1,11 +1,10 @@
-const { writeFileAsync, readFileAsync } = require("../lib/supabase_file"); // 置き換え版のパス
+const { writeFileAsync, readFileAsync } = require("../lib/supabase_file_r"); // 置き換え版のパス
 const _ = require("lodash");
 const axios = require("axios");
 const CHATWORK_API_TOKEN = process.env.CWapitoken;
 const { isUserAdmin, getChatworkMembers } = require("../ctr/cwdata");
 const { sendchatwork } = require("../ctr/message");
 const AdminaccountId = 9487124;
-const filePath = "./ousama/rousama.json";
 
 
 // 混ぜ方
