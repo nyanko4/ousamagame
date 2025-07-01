@@ -1,5 +1,5 @@
 const CHATWORK_API_TOKEN = process.env.CWapitoken;
-const fs = require("fs").promises;
+const { readFileAsync } = require("../lib/supabase_file"); // 置き換え版のパス
 const axios = require("axios");
 const reqcheck = require("../middleware/rsign");
 const ousama = require("../module/rousama");
@@ -7,19 +7,6 @@ const { fileurl, sendername } = require("../ctr/cwdata");
 const { readmessage, deleteMessages, deleteMessages2 } = require("../ctr/message");
 const filePath = "./ousama/rousama.json";
 const AdminaccountId = 9487124;
-
-// ファイルを読み込む
-async function readFileAsync(key) {
-  try {
-    const fileContent = await fs.readFile(filePath, "utf8");
-    const jsonData = JSON.parse(fileContent);
-    return jsonData[key];
-  } catch (error) {
-    console.error(`読み込みに失敗しました ${key}:`, error);
-    throw error;
-  }
-}
-
 
 async function renbeya(req, res) {
   const c = await reqcheck(req);
