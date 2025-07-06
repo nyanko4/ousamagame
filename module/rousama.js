@@ -102,17 +102,6 @@ async function ousamagame(body, messageId, roomId, accountId) {
         await sendchatwork(isFacilitatorms, roomId);
       }
     }
-    if (body.match(/^deathmatch/)) {
-      if (isFacilitator) {
-        if (ishasParticipants) {
-          return await deathmatch(messageId, roomId, accountId);
-        } else {
-          await sendchatwork(ishasParticipantsms, roomId);
-        }
-      } else {
-        await sendchatwork(isFacilitatorms, roomId);
-      }
-    }
 
     // 進行役が言っているか
     //入力決定
@@ -129,7 +118,7 @@ async function ousamagame(body, messageId, roomId, accountId) {
       }
     }
     //追加
-    if (body.match(/^追加/)) {
+    if (body.match(/^追加\d+/)) {
       if (isFacilitator) {
         return await Participant_add(body, messageId, roomId, accountId);
       } else {
@@ -137,7 +126,7 @@ async function ousamagame(body, messageId, roomId, accountId) {
       }
     }
     //削除
-    if (body.match(/^削除/)) {
+    if (body.match(/^削除\d+/)) {
       if (isFacilitator) {
         return await Participant_delete(body, messageId, roomId, accountId);
       } else {
