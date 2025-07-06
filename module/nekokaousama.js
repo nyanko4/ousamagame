@@ -221,11 +221,10 @@ async function ousamagame(body, messageId, roomId, accountId) {
 // 王様ゲームスタート
 async function ousama(messageId, roomId, accountId) {
   const result_display = await readFileAsync("result_display");
-  const deathmatch = await readFileAsync("deathmatch");
   
   if (result_display == "済") {
     await writeFileAsync("result_display", "未");
-  } else if (result_display == "未" && deathmatch === "off") {
+  } else if (result_display == "未") {
    await sendchatwork(
       `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]\n結果を出し忘れてるにゃ`,
       roomId
@@ -393,13 +392,6 @@ async function Participant_delete(body, messageId, roomId, accountId) {
 // 参加申請
 async function Participation(messageId, roomId, accountId) {
   try {
-    const deathmatch = await readFileAsync("deathmatch");
-    if (deathmatch !== "off") {
-      return await sendchatwork(
-        `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nデスマッチをしてるにゃ。邪魔しにゃいように観戦してにゃ`,
-        roomId
-      );
-    }
     let participant = await readFileAsync("participant");
     if (participant.includes(accountId)) {
       await sendchatwork(
@@ -539,29 +531,6 @@ async function systemToggle(roomId) {
     } else {
       await writeFileAsync("system", "起動中");
       await sendchatwork("システムを復旧しますにゃ", roomId);
-    }
-  } catch (error) {
-    console.error("error", error);
-  }
-}
-
-// デスマッチ
-async function deathmatch(messageId, roomId, accountId) {
-  try {
-    const deathmatch = await readFileAsync("deathmatch");
-    if (deathmatch == "on") {
-      await writeFileAsync("deathmatch", "off");
-      await writeFileAsync("result_display", "済");
-      await sendchatwork(
-        `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nデスマッチモードがオフににゃりましたにゃ`,
-        roomId
-      );
-    } else if (deathmatch == "off") {
-      await writeFileAsync("deathmatch", "on");
-      await sendchatwork(
-        `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nデスマッチモードがオンににゃりましたにゃ`,
-        roomId
-      );
     }
   } catch (error) {
     console.error("error", error);
