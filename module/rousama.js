@@ -225,7 +225,7 @@ async function ousama(messageId, roomId, accountId) {
   
   if (result_display == "済") {
     await writeFileAsync("result_display", "未");
-  } else if (result_display == "未" && deathmatch === "off") {
+  } else if (result_display == "未") {
    await sendchatwork(
       `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]\n結果を出し忘れています`,
       roomId
@@ -394,13 +394,6 @@ async function Participant_delete(body, messageId, roomId, accountId) {
 // 参加申請
 async function Participation(messageId, roomId, accountId) {
   try {
-    const deathmatch = await readFileAsync("deathmatch");
-    if (deathmatch !== "off") {
-      return await sendchatwork(
-        `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nデスマッチをしています。邪魔しないように観戦しましょう`,
-        roomId
-      );
-    }
     let participant = await readFileAsync("participant");
     if (participant.includes(accountId)) {
       await sendchatwork(
@@ -540,29 +533,6 @@ async function systemToggle(roomId) {
     } else {
       await writeFileAsync("system", "起動中");
       await sendchatwork("システムを復旧します", roomId);
-    }
-  } catch (error) {
-    console.error("error", error);
-  }
-}
-
-// デスマッチ
-async function deathmatch(messageId, roomId, accountId) {
-  try {
-    const deathmatch = await readFileAsync("deathmatch");
-    if (deathmatch == "on") {
-      await writeFileAsync("deathmatch", "off");
-      await writeFileAsync("result_display", "済");
-      await sendchatwork(
-        `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nデスマッチモードがオフになりました`,
-        roomId
-      );
-    } else if (deathmatch == "off") {
-      await writeFileAsync("deathmatch", "on");
-      await sendchatwork(
-        `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nデスマッチモードがオンになりました`,
-        roomId
-      );
     }
   } catch (error) {
     console.error("error", error);
