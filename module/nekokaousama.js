@@ -102,17 +102,6 @@ async function ousamagame(body, messageId, roomId, accountId) {
         await sendchatwork(isFacilitatorms, roomId);
       }
     }
-    if (body.match(/^deathmatch/)) {
-      if (isFacilitator) {
-        if (ishasParticipants) {
-          return await deathmatch(messageId, roomId, accountId);
-        } else {
-          await sendchatwork(ishasParticipantsms, roomId);
-        }
-      } else {
-        await sendchatwork(isFacilitatorms, roomId);
-      }
-    }
 
     // 進行役が言っているか
     //入力決定
