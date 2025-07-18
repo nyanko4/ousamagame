@@ -207,7 +207,6 @@ async function ousamagame(body, messageId, roomId, accountId) {
 // 王様ゲームスタート
 async function ousama(messageId, roomId, accountId) {
   const result_display = await readFileAsync("result_display");
-  const deathmatch = await readFileAsync("deathmatch");
   
   if (result_display == "済") {
     await writeFileAsync("result_display", "未");
