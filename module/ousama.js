@@ -195,14 +195,10 @@ async function ousamagame(body, messageId, roomId, accountId) {
       if (isAdminaccountId) {
         return await authority(body, roomId, accountId);
       }
-    } else if (body.match(/^デバッグ$/)) {
-      if (isAdminaccountId) {
-        return await debug(body, messageId, roomId, accountId);
-      }
     }
   } catch (error) {
     await sendchatwork(
-      `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nエラー${error}`,
+      `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nエラー${error.response ? error.response.data : error.message}`,
       roomId
     );
   }
@@ -582,18 +578,6 @@ async function authority(body, roomId, accountIdToBlock) {
       "不正利用フィルターエラー:",
       error.response ? error.response.data : error.message
     );
-  }
-}
-
-//デバッグ
-async function debug(body, messageId, roomId, accountId) {
-  try {
-    const fileContent = await fs.readFile(filePath, "utf8");
-    const jsonData = JSON.parse(fileContent);
-    await sendchatwork(fileContent, roomId);
-    console.log(jsonData);
-  } catch (err) {
-    console.error(err);
   }
 }
 
