@@ -5,8 +5,6 @@ const CHATWORK_API_TOKEN = process.env.CWapitoken;
 const { isUserAdmin, getChatworkMembers } = require("../ctr/cwdata");
 const { sendchatwork } = require("../ctr/message");
 const AdminaccountId = 9487124;
-const filePath = "./ousama/ousama.json";
-
 
 // 混ぜ方
 function getShuffleFunction(method) {
@@ -324,7 +322,7 @@ async function Participant_clear(messageId, roomId, accountId) {
 // 追加
 async function Participant_add(body, messageId, roomId, accountId) {
   try {
-    //if (body.includes(AdminaccountId)) {await sendchatwork(`[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\n風呂入ってきます`,roomId);return;}
+    console.log("追加実行")
     const Id = body.replace("追加", "");
     let participant = await readFileAsync("participant");
     if (participant.includes(Id)) {
