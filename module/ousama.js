@@ -119,7 +119,7 @@ async function ousamagame(body, messageId, roomId, accountId) {
     //追加
     if (body.match(/^追加\d+/)) {
       if (isFacilitator) {
-        return await Participant_add(body, messageId, roomId, accountId);
+        //return await Participant_add(body, messageId, roomId, accountId);
       } else {
         await sendchatwork(isFacilitatorms, roomId);
       }
