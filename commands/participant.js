@@ -124,9 +124,9 @@ async function exit(messageId, roomId, accountId) {
 }
 
 module.exports = [
-  { command: /^入力決定/, execute: participantRegistration, isFacilitator: true },
-  { command: /^追加\d+/, execute: participantAdd, isFacilitator: true },
-  { command: /^削除\d+/, execute: participantDelete, isFacilitator: true },
+  { command: /^入力決定\S+/, execute: participantRegistration, isFacilitator: true },
+  { command: /^追加\d+$/, execute: participantAdd, isFacilitator: true },
+  { command: /^削除\d+$/, execute: participantDelete, isFacilitator: true },
   { command: /^済み$/, execute: participantDisplay, isParticipants: true },
   { command: /^clear$/, execute: participantClear, isFacilitator: true },
   { command: /^参加申請$/, execute: participation },
