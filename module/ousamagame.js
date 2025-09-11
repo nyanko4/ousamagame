@@ -59,16 +59,11 @@ async function ousamagame(body, messageId, roomId, accountId) {
     for (const cmd of commands) {
       if (!body.match(cmd.command)) continue;
 
-      // 管理者かどうか
-      if (cmd.isAdmin) {
-        if (!isAdmin) return await replyError(accountId, roomId, messageId, "管理者のみ利用可能です");
-      };
-
-      // 進行役かどうか
-      if (cmd.isFacilitator) {
-        const ok = await isFacilitator(accountId);
-        if (!ok) return await replyError(accountId, roomId, messageId, "進行役にしてもらってください");
-      };
+      // アドミンか
+      if (cmd.isAdminAccountId) {
+        const ok = await isAdminAccountId(accountId);
+        if (!ok) return;
+      }
 
       // 参加者がいるか
       if (cmd.isParticipants) {
@@ -76,11 +71,16 @@ async function ousamagame(body, messageId, roomId, accountId) {
         if (!ok) return await replyError(accountId, roomId, messageId, "参加者がいません");
       }
 
-      // アドミンか
-      if (cmd.isAdminAccountId) {
-        const ok = await isAdminAccountId(accountId);
-        if (!ok) return;
-      }
+      // 進行役かどうか
+      if (cmd.isFacilitator) {
+        const ok = await isFacilitator(accountId);
+        if (!ok) return await replyError(accountId, roomId, messageId, "進行役にしてもらってください");
+      };
+      
+      // 管理者かどうか
+      if (cmd.isAdmin) {
+        if (!isAdmin) return await replyError(accountId, roomId, messageId, "管理者のみ利用可能です");
+      };
       
       return await cmd.execute(body, messageId, roomId, accountId);
     }
