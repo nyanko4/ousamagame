@@ -19,16 +19,13 @@ async function participantDisplay(roomId) {
     case "getRandomUniqueElements": shuffle = 2; break;
     default: shuffle = "error";
   }
-  let Id = `[info][title]登録されてる人　${canExit}　${shuffle}[/title]`;
+  let text = `[info][title]登録されてる人　${canExit}　${shuffle}[/title][info]`;
   const data = await readFileAsync("participant");
-  Id += data.join(",");
-  Id += "[/info]";
-  await sendchatwork(Id, roomId);
-
-  let name = `[info][title]登録されてる人　${canExit}　${shuffle}[/title]`;
-  name += data.map(d => `[piconname:${d}]`).join("");
-  name += "[/info]";
-  await sendchatwork(name, roomId);
+  text += data.join(",");
+  text += "[/info][info]";
+  text += data.map(d => `[piconname:${d}]`).join("");
+  text += "[/info][/info]";
+  await sendchatwork(text, roomId);
 }
 
 // 追加
@@ -130,7 +127,7 @@ module.exports = [
   { command: /^入力決定/, execute: participantRegistration, isFacilitator: true },
   { command: /^追加\d+/, execute: participantAdd, isFacilitator: true },
   { command: /^削除\d+/, execute: participantDelete, isFacilitator: true },
-  { command: /^済み$/, execute: participantDisplay },
+  { command: /^済み$/, execute: participantDisplay, isParticipants: true },
   { command: /^clear$/, execute: participantClear, isFacilitator: true },
   { command: /^参加申請$/, execute: participation },
   { command: /^退出$/, execute: exit }
