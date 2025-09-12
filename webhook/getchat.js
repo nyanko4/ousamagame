@@ -41,7 +41,6 @@ async function getchat(req, res) {
   log(body, messageId, roomId, accountId, event, sendtime, updatetime);
   const handlers = [
     ousama,
-    dice,
   ];
   const system = await readFileAsync("system");
   if (system == "起動中") {
