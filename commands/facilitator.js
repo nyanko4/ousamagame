@@ -1,12 +1,12 @@
 const { readFileAsync, writeFileAsync } = require("../lib/supabase_file");
-const { sendchatwork, replayMessage } = require("../ctr/message");
+const { sendchatwork, replyMessage } = require("../ctr/message");
 
 // 進行役決定
 async function facilitator(body, messageId, roomId, accountId) {
   try {
     const facilitator = body.replace(/^進行役決定|\s+/g, "");
     await writeFileAsync("facilitator", facilitator);
-    await replayMessage(accountId, roomId, messageId, `進行役を[piconname:${facilitator}]さんに設定しました`,
+    await replyMessage(accountId, roomId, messageId, `進行役を[piconname:${facilitator}]さんに設定しました`,
       roomId
     );
   } catch (error) {
