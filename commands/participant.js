@@ -65,7 +65,7 @@ async function participantClear(body, messageId, roomId, accountId) {
 
 // 参加申請
 async function participation(body, messageId, roomId, accountId) {
-  let participant = await readFileAsync("participant");
+  let participant = await readFileAsync("participant") || [];
   if (participant.includes(accountId)) {
     await replyMessage(accountId, roomId, messageId, "もう参加が受理されています");
   } else {
