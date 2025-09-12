@@ -101,7 +101,7 @@ async function readmessage(roomId, messageId) {
 
 module.exports = {
   sendchatwork,
-  replayMessage,
+  replyMessage,
   deleteMessages,
   deleteMessages2,
   readmessage,
