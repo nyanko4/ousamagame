@@ -21,6 +21,14 @@ async function sendchatwork(ms, roomId) {
     );
   }
 }
+
+async function replyMessage(accountId, roomId, messageId, text) {
+  return await sendchatwork(
+    `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\n${text}`,
+    roomId
+  );
+}
+
 //メッセージを削除
 async function deleteMessages(body, messageId, roomId, accountId) {
   const url = `https://api.chatwork.com/v2/rooms/${roomId}/messages/${messageId}`;
@@ -93,6 +101,7 @@ async function readmessage(roomId, messageId) {
 
 module.exports = {
   sendchatwork,
+  replayMessage,
   deleteMessages,
   deleteMessages2,
   readmessage,
