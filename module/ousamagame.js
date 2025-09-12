@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { sendchatwork } = require("../ctr/message");
+const { sendchatwork, replayMessage } = require("../ctr/message");
 const { isUserAdmin } = require("../ctr/cwdata");
 const { readFileAsync } = require("../lib/supabase_file");
 const adminAccountId = process.env.adminAccountId;
@@ -33,13 +33,6 @@ async function isAdminAccountId(accountId) {
   return accountId === adminAccountId;
 }
 
-async function replyError(accountId, roomId, messageId, text) {
-  return await sendchatwork(
-    `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\n${text}`,
-    roomId
-  );
-}
-
 const commands = [];
 const commandsDir = path.join(__dirname, "../commands");
 for (const file of fs.readdirSync(commandsDir)) {
@@ -68,27 +61,24 @@ async function ousamagame(body, messageId, roomId, accountId) {
       // 参加者がいるか
       if (cmd.isParticipants) {
         const ok = await isParticipants();
-        if (!ok) return await replyError(accountId, roomId, messageId, "参加者がいません");
+        if (!ok) return await replayMessage(accountId, roomId, messageId, "参加者がいません");
       }
 
       // 進行役かどうか
       if (cmd.isFacilitator) {
         const ok = await isFacilitator(accountId);
-        if (!ok) return await replyError(accountId, roomId, messageId, "進行役にしてもらってください");
+        if (!ok) return await replyMessage(accountId, roomId, messageId, "進行役にしてもらってください");
       };
       
       // 管理者かどうか
       if (cmd.isAdmin) {
-        if (!isAdmin) return await replyError(accountId, roomId, messageId, "管理者のみ利用可能です");
+        if (!isAdmin) return await replyMessage(accountId, roomId, messageId, "管理者のみ利用可能です");
       };
       
       return await cmd.execute(body, messageId, roomId, accountId);
     }
   } catch (error) {
-    await sendchatwork(
-      `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nエラー${error.message}`,
-      roomId
-    );
+    await replayMessage(accountId, roomId, messageId, `エラー${error.message}`);
   }
 }
 
