@@ -1,5 +1,5 @@
 const { writeFileAsync, readFileAsync } = require("../lib/supabase_file");
-const { sendchatwork, replayMessage } = require("../ctr/message");
+const { sendchatwork, replyMessage } = require("../ctr/message");
 const { getShuffleFunction } = require("../ctr/gamesystem");
 
 // 開始
@@ -9,7 +9,7 @@ async function gameStart(messageId, roomId, accountId) {
   if (!result_display || result_display == "済") {
     await writeFileAsync("result_display", "未");
   } else if (result_display == "未") {
-   await replayMessage(accountId, roomId, messageId, "結果を出し忘れています");
+    await replyMessage(accountId, roomId, messageId, "結果を出し忘れています");
     await gameResult(roomId, accountId);
     return;
   }
