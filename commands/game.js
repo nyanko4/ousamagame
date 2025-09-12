@@ -1,5 +1,5 @@
 const { writeFileAsync, readFileAsync } = require("../lib/supabase_file");
-const { sendchatwork } = require("../ctr/message");
+const { sendchatwork, replayMessage } = require("../ctr/message");
 const { getShuffleFunction } = require("../ctr/gamesystem");
 
 // 開始
@@ -9,17 +9,14 @@ async function gameStart(messageId, roomId, accountId) {
   if (!result_display || result_display == "済") {
     await writeFileAsync("result_display", "未");
   } else if (result_display == "未") {
-   await sendchatwork(
-      `[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]\n結果を出し忘れています`,
-      roomId
-    );
+   await replayMessage(accountId, roomId, messageId, "結果を出し忘れています");
     await gameResult(roomId, accountId);
     return;
   }
   
   let participants = await readFileAsync("participant");
   
-  if (!participants || participants.length <= 1) return await sendchatwork(`[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nゲームを開始するための人数が足りません`, roomId)
+  if (!participants || participants.length <= 1) return await replayMessage(accountId, roomId, messageId, "ゲームを開始するための人数が足りません")
   
   const indices = Array.from(participants.keys());
   
