@@ -1,16 +1,15 @@
-const _ = require("lodash");
 const { readFileAsync, writeFileAsync } = require("../lib/supabase_file");
 const { sendchatwork, replyMessage } = require("../ctr/message");
 const adminAccountId = process.env.adminAccountId;
 
 // 入力決定
-async function participantRegistration(body) {
+async function participantRegistration(body, messageId, roomId, accountId) {
   const participant = _.uniq(body.replace(/^入力決定|\s+/g, "").split(","));
   await writeFileAsync("participant", participant);
 }
 
 // 登録済みの人を表示
-async function participantDisplay(roomId) {
+async function participantDisplay(body, messageId, roomId, accountId) {
   const canExit = await readFileAsync("canExit");
   const mix = await readFileAsync("mix");
   let shuffle = "";
@@ -58,13 +57,13 @@ async function participantDelete(body, messageId, roomId, accountId) {
 }
 
 // clear
-async function participantClear(messageId, roomId, accountId) {
+async function participantClear(body, messageId, roomId, accountId) {
   await writeFileAsync("participant", []);
   await replyMessage(accountId, roomId, messageId, "全て削除しました");
 }
 
 // 参加申請
-async function participation(messageId, roomId, accountId) {
+async function participation(body, messageId, roomId, accountId) {
   let participant = await readFileAsync("participant");
   if (participant.includes(accountId)) {
     await replyMessage(accountId, roomId, messageId, "もう参加が受理されています");
@@ -77,7 +76,7 @@ async function participation(messageId, roomId, accountId) {
 }
 
 // 退出
-async function exit(messageId, roomId, accountId) {
+async function exit(body, messageId, roomId, accountId) {
   let participant = await readFileAsync("participant");
   const canExit = await readFileAsync("canExit");
   if (canExit === "可" || accountId === adminAccountId) {
