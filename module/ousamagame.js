@@ -61,7 +61,7 @@ async function ousamagame(body, messageId, roomId, accountId) {
       // 参加者がいるか
       if (cmd.isParticipants) {
         const ok = await isParticipants();
-        if (!ok) return await replayMessage(accountId, roomId, messageId, "参加者がいません");
+        if (!ok) return await replyMessage(accountId, roomId, messageId, "参加者がいません");
       }
 
       // 進行役かどうか
