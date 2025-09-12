@@ -15,7 +15,7 @@ async function facilitator(body, messageId, roomId, accountId) {
 }
 
 // 進行役表示
-async function facilitatorDisplay(roomId) {
+async function facilitatorDisplay(body, messageId, roomId, accountId) {
   try {
     const data = await readFileAsync("facilitator");
     await sendchatwork(
