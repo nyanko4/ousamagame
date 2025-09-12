@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { sendchatwork, replayMessage } = require("../ctr/message");
+const { sendchatwork, replyMessage } = require("../ctr/message");
 const { isUserAdmin } = require("../ctr/cwdata");
 const { readFileAsync } = require("../lib/supabase_file");
 const adminAccountId = process.env.adminAccountId;
