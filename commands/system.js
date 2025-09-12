@@ -1,5 +1,6 @@
 const { writeFileAsync, readFileAsync } = require("../lib/supabase_file");
 const { sendchatwork, replyMessage } = require("../ctr/message");
+const { getChatworkMembers } = require("../ctr/cwdata");
 const axios = require("axios");
 const CHATWORK_API_TOKEN = process.env.CWapitoken;
 
