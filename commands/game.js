@@ -1,8 +1,6 @@
 const { writeFileAsync, readFileAsync } = require("../lib/supabase_file");
-const CHATWORK_API_TOKEN = process.env.CWapitoken;
 const { sendchatwork } = require("../ctr/message");
 const { getShuffleFunction } = require("../ctr/gamesystem");
-const _ = require("lodash");
 
 // 開始
 async function gameStart(messageId, roomId, accountId) {
@@ -18,33 +16,35 @@ async function gameStart(messageId, roomId, accountId) {
     await gameResult(roomId, accountId);
     return;
   }
+  
   let participants = await readFileAsync("participant");
-  if (participants.length <= 1)
-    return await sendchatwork(`[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nゲームを開始するための人数が足りません`, roomId)
-  const indices = [];
-  for (let i = 0; i < participants.length; i++) {
-    indices.push(i);
-  }
+  
+  if (!participants || participants.length <= 1) return await sendchatwork(`[rp aid=${accountId} to=${roomId}-${messageId}][pname:${accountId}]さん\nゲームを開始するための人数が足りません`, roomId)
+  
+  const indices = Array.from(participants.keys());
+  
   //await sendchatwork(indices.toString(), roomId); // デバッグ用
+  
   const mix = await readFileAsync("mix");
   const shuffles = getShuffleFunction(mix);
   const shuffledIndices = shuffles(indices);
   const kingAccountId = participants[shuffledIndices[0]];
   let otherParticipantsInfo = "";
-  for (let i = 1; i < shuffledIndices.length; i++) {
-    const participantNumber = i + 1;
-    const participantAccountId = participants[shuffledIndices[i]];
-    otherParticipantsInfo += `${
-      participantNumber - 1
-    }:[piconname:${participantAccountId}]\n`;
-  }
+  
+    otherParticipantsInfo = shuffledIndices
+      .slice(1)
+      .map((idx, i) => `${i + 1}:[piconname:${participants[idx]}]`)
+      .join("\n")
+  
   const message = `王様は[To:${kingAccountId}][pname:${kingAccountId}]さんです。番号は1〜${
     participants.length - 1
   }番までです`;
-  await sendchatwork(message, roomId);
+
   await writeFileAsync("kingAccountId", kingAccountId);
 
   await writeFileAsync("otherParticipantsInfo", otherParticipantsInfo);
+  
+  await sendchatwork(message, roomId);
 };
 
 // 結果
