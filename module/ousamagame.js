@@ -78,7 +78,7 @@ async function ousamagame(body, messageId, roomId, accountId) {
       return await cmd.execute(body, messageId, roomId, accountId);
     }
   } catch (error) {
-    await replayMessage(accountId, roomId, messageId, `エラー${error.message}`);
+    await replyMessage(accountId, roomId, messageId, `エラー${error.message}`);
   }
 }
 
