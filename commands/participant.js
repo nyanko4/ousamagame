@@ -1,3 +1,4 @@
+const _ = require("lodash");
 const { readFileAsync, writeFileAsync } = require("../lib/supabase_file");
 const { sendchatwork, replyMessage } = require("../ctr/message");
 const adminAccountId = process.env.adminAccountId;
