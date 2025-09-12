@@ -30,6 +30,6 @@ async function facilitatorDisplay(roomId) {
 }
 
 module.exports = [
-  { command: /^進行役決定\d+$/, excute: facilitator, isAdmin: true },
-  { command: /^進行$/, excute: facilitatorDisplay },
+  { command: /^進行役決定\d+$/, execute: facilitator, isAdmin: true },
+  { command: /^進行$/, execute: facilitatorDisplay },
 ];
