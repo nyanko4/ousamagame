@@ -1,10 +1,10 @@
 const CHATWORK_API_TOKEN = process.env.CWapitoken;
 const fs = require("fs");
-const { readFileAsync } = require("../lib/supabase_file"); // 置き換え版のパス
+const { readFileAsync } = require("../lib/supabase_file");
 const axios = require("axios");
 const FormData = require("form-data");
 const reqcheck = require("../middleware/sign");
-const ousama = require("../module/ousama");
+const ousama = require("../module/ousamagame");
 const dice = require("../module/dice");
 const { fileurl, sendername } = require("../ctr/cwdata");
 const { readmessage, deleteMessages, deleteMessages2 } = require("../ctr/message");
