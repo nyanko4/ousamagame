@@ -1,6 +1,5 @@
 const { readFileAsync, writeFileAsync } = require("../lib/supabase_file");
 const { sendchatwork, replayMessage } = require("../ctr/message");
-const adminAccountId = process.env.adminAccountId;
 
 // 進行役決定
 async function facilitator(body, messageId, roomId, accountId) {
