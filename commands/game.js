@@ -3,7 +3,7 @@ const { sendchatwork, replyMessage } = require("../ctr/message");
 const { getShuffleFunction } = require("../ctr/gamesystem");
 
 // 開始
-async function gameStart(messageId, roomId, accountId) {
+async function gameStart(body, messageId, roomId, accountId) {
   const result_display = await readFileAsync("result_display");
   
   if (!result_display || result_display == "済") {
@@ -45,7 +45,7 @@ async function gameStart(messageId, roomId, accountId) {
 };
 
 // 結果
-async function gameResult(roomId, accountId) {
+async function gameResult(body, messageId, roomId, accountId) {
   try {
     const result_display = await readFileAsync("result_display");
     if (result_display == "未") {
