@@ -4,7 +4,6 @@ const axios = require("axios");
 const reqcheck = require("../middleware/rsign");
 const ousama = require("../module/rousama");
 const { fileurl, sendername } = require("../ctr/cwdata");
-const { deleteMessages, deleteMessages2 } = require("../ctr/message");
 const filePath = "./ousama/rousama.json";
 const adminAccountId = process.env.adminAccountId;
 
@@ -22,13 +21,7 @@ async function renbeya(req, res) {
   } = req.body.webhook_event;
   await readmessage(roomId, messageId);
   if (accountId == 10153212) {
-    if (body.includes("[dtext:chatroom_chat_edited]")) {
-      deleteMessages(body, messageId, roomId, accountId);
-    }
-    return
-  }
-  if(body.includes("/削除/") && accountId === adminAccountId) {
-    deleteMessages2(body, messageId, roomId, accountId);
+    return;
   }
   const handlers = [
     ousama
@@ -40,7 +33,7 @@ async function renbeya(req, res) {
         return res.sendStatus(200);
       }
     }
-  } else if (body.match(/^stop切り替え$/)) {
+  } else if (body.match(/^stop切り替え$/) && accountId === adminAccouontId) {
     return await ousama(body, messageId, roomId, accountId);
   }
 
