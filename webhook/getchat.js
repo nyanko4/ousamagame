@@ -6,7 +6,7 @@ const FormData = require("form-data");
 const reqcheck = require("../middleware/sign");
 const ousama = require("../module/ousamagame");
 const { fileurl, sendername } = require("../ctr/cwdata");
-const { deleteMessages2 } = require("../ctr/message");
+const { deleteMessages } = require("../ctr/message");
 const arashi = require("../ctr/arashi");
 const adminAccountId = process.env.adminAccountId;
 
