@@ -3,6 +3,7 @@ const express = require("express")
 const app = express()
 const getchat = require("./webhook/getchat");
 const renbeya = require("./webhook/renbeya");
+const mention = require("./webhook/mention");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -17,6 +18,10 @@ app.post("/ousama", (req, res) => {
 
 app.post("/renbeyaousama", (req, res) => {
   renbeya(req, res);
+});
+
+app.post("/mention", (req, res) => {
+  mention(req, res);
 });
 
 app.listen(3000, () => {
