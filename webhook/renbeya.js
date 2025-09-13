@@ -4,9 +4,9 @@ const axios = require("axios");
 const reqcheck = require("../middleware/rsign");
 const ousama = require("../module/rousama");
 const { fileurl, sendername } = require("../ctr/cwdata");
-const { readmessage, deleteMessages, deleteMessages2 } = require("../ctr/message");
+const { deleteMessages, deleteMessages2 } = require("../ctr/message");
 const filePath = "./ousama/rousama.json";
-const AdminaccountId = 9487124;
+const adminAccountId = process.env.adminAccountId;
 
 async function renbeya(req, res) {
   const c = await reqcheck(req);
@@ -27,7 +27,7 @@ async function renbeya(req, res) {
     }
     return
   }
-  if(body.includes("/削除/") && accountId === AdminaccountId) {
+  if(body.includes("/削除/") && accountId === adminAccountId) {
     deleteMessages2(body, messageId, roomId, accountId);
   }
   const handlers = [
