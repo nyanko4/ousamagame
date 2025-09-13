@@ -80,7 +80,7 @@ async function participation(body, messageId, roomId, accountId) {
 async function exit(body, messageId, roomId, accountId) {
   let participant = await readFileAsync("participant");
   const canExit = await readFileAsync("canExit");
-  if (canExit === "可" || accountId === adminAccountId) {
+  if (canExit === "可" || accountId == adminAccountId) {
     if (participant.includes(accountId)) {
       await replyMessage(accountId, roomId, messageId, "退出を受理します");
     } else {
