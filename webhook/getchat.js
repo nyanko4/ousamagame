@@ -6,7 +6,7 @@ const FormData = require("form-data");
 const reqcheck = require("../middleware/sign");
 const ousama = require("../module/ousamagame");
 const { fileurl, sendername } = require("../ctr/cwdata");
-const { deleteMessages, deleteMessages2 } = require("../ctr/message");
+const { deleteMessages2 } = require("../ctr/message");
 const arashi = require("../ctr/arashi");
 const adminAccountId = process.env.adminAccountId;
 
@@ -32,9 +32,6 @@ async function getchat(req, res) {
     }
     return
   }
-  if(body.includes("/削除/") && accountId === AdminaccountId) {
-    deleteMessages2(body, messageId, roomId, accountId);
-  }
   log(body, messageId, roomId, accountId, event, sendtime, updatetime);
   const handlers = [
     ousama,
@@ -46,7 +43,7 @@ async function getchat(req, res) {
         return res.sendStatus(200);
       }
     }
-  } else if (body.match(/^stop切り替え$/)) {
+  } else if (body.match(/^stop切り替え$/ && accountId === adminAccountId)) {
     return await ousama(body, messageId, roomId, accountId);
   }
 
