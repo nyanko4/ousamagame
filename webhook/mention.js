@@ -7,7 +7,7 @@ async function mention(req, res) {
   const messageId = req.body.webhook_event.message_id;
   const body = req.body.webhook_event.body;
   await readmessage(roomId, messageId);
-  if(body.includes("/削除/") && accountId === adminAccountId) return deleteMessages2(body, messageId, roomId, accountId);
+  if(body.includes("/削除/") && accountId == adminAccountId) return deleteMessages2(body, messageId, roomId, accountId);
 }
 
 module.exports = mention;
