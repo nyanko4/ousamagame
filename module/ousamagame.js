@@ -55,7 +55,7 @@ async function ousamagame(body, messageId, roomId, accountId) {
       // アドミンか
       if (cmd.isAdminAccountId) {
         const ok = await isAdminAccountId(accountId);
-        if (!ok) return;
+        if (!ok) return console.log("認証に失敗しました");
       }
 
       // 参加者がいるか
