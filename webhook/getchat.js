@@ -5,12 +5,10 @@ const axios = require("axios");
 const FormData = require("form-data");
 const reqcheck = require("../middleware/sign");
 const ousama = require("../module/ousamagame");
-const dice = require("../module/dice");
 const { fileurl, sendername } = require("../ctr/cwdata");
-const { readmessage, deleteMessages, deleteMessages2 } = require("../ctr/message");
+const { deleteMessages, deleteMessages2 } = require("../ctr/message");
 const arashi = require("../ctr/arashi");
-const filePath = "./ousama/ousama.json";
-const AdminaccountId = 9487124;
+const adminAccountId = process.env.adminAccountId;
 
 
 async function getchat(req, res) {
@@ -28,7 +26,6 @@ async function getchat(req, res) {
     send_time: sendtime,
     update_time: updatetime,
   } = req.body.webhook_event;
-  await readmessage(roomId, messageId);
   if (accountId == 10153212) {
     if (body.includes("[dtext:chatroom_chat_edited]")) {
       deleteMessages(body, messageId, roomId, accountId);
