@@ -4,7 +4,6 @@ const axios = require("axios");
 const reqcheck = require("../middleware/rsign");
 const ousama = require("../module/rousama");
 const { fileurl, sendername } = require("../ctr/cwdata");
-const filePath = "./ousama/rousama.json";
 const adminAccountId = process.env.adminAccountId;
 
 async function renbeya(req, res) {
@@ -19,7 +18,6 @@ async function renbeya(req, res) {
     room_id: roomId,
     message_id: messageId,
   } = req.body.webhook_event;
-  await readmessage(roomId, messageId);
   if (accountId == 10153212) {
     return;
   }
