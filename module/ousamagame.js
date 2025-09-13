@@ -30,7 +30,7 @@ async function isParticipants() {
 }
 
 async function isAdminAccountId(accountId) {
-  return accountId === adminAccountId;
+  return accountId == adminAccountId;
 }
 
 const commands = [];
