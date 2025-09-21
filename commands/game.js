@@ -10,7 +10,7 @@ async function gameStart(body, messageId, roomId, accountId) {
     await writeFileAsync("result_display", "未");
   } else if (result_display == "未") {
     await replyMessage(accountId, roomId, messageId, "結果を出し忘れています");
-    await gameResult(roomId, accountId);
+    await gameResult(body, messageId, roomId, accountId);
     return;
   }
   
