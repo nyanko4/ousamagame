@@ -1,4 +1,4 @@
-const { readmessage, deleteMessage2 } = require("../ctr/message");
+const { readmessage, deleteMessages2 } = require("../ctr/message");
 const adminAccountId = process.env.adminAccountId;
 
 async function mention(req, res) {
