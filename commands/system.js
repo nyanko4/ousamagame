@@ -111,5 +111,5 @@ async function changeAuthority(body, messageId, roomId, accountIdToBlock) {
 module.exports = [
   { command: /^切り替え$/, execute: exitToggle, isFacilitator: true },
   { command: /^混ぜ方切り替え$/, execute: mixToggle, isFacilitator: true },
-  { command: /^権限/, execute: changeAuthority, isAdminAccountId: true },
+  { command: /権限/, execute: changeAuthority, isAdminAccountId: true },
 ]
