@@ -83,11 +83,11 @@ async function exit(body, messageId, roomId, accountId) {
   if (canExit === "可" || accountId == adminAccountId) {
     if (participant.includes(accountId)) {
       await replyMessage(accountId, roomId, messageId, "退出を受理します");
+      participant = _.uniq(participant).filter(p => p != accountId && p !== ",");
+      await writeFileAsync("participant", participant);
     } else {
       await replyMessage(accountId, roomId, messageId, "もう退出されています");
     }
-    participant = _.uniq(participant).filter(p => p != accountId && p !== ",");
-    await writeFileAsync("participant", participant);
   } else {
     await replyMessage(accountId, roomId, messageId, "使用不可です");
   }
