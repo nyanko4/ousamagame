@@ -1,3 +1,5 @@
+//削除、追加等の数字化、もしくは文字列化
+
 const _ = require("lodash");
 const { readFileAsync, writeFileAsync } = require("../lib/supabase_file");
 const { sendchatwork, replyMessage } = require("../ctr/message");
