@@ -32,13 +32,13 @@ async function participantDisplay(body, messageId, roomId, accountId) {
 
 // 追加
 async function participantAdd(body, messageId, roomId, accountId) {
-  const Id = body.replace("追加", "");
+  const id = Number(body.replace("追加", ""));
   let participant = await readFileAsync("participant");
-  if (participant.includes(Id)) {
+  if (participant.includes(id)) {
     await replyMessage(accountId, roomId, messageId, "既に追加されています");
   } else {
     await replyMessage(accountId, roomId, messageId, `[pname:${Id}]さんを追加します`);
-    participant.push(Id);
+    participant.push(id);
     participant = _.uniq(participant).filter(p => p !== "" && p !== ",");
     await writeFileAsync("participant", participant);
   }
@@ -46,12 +46,12 @@ async function participantAdd(body, messageId, roomId, accountId) {
 
 // 削除
 async function participantDelete(body, messageId, roomId, accountId) {
-  const account = body.replace("削除", "");
+  const id = Number(body.replace("削除", ""));
   let participant = await readFileAsync("participant");
-  if (participant.includes(account)) {
-    await replyMessage(accountId, roomId, messageId, `[pname:${account}]さんを削除します`);
+  if (participant.includes(id)) {
+    await replyMessage(accountId, roomId, messageId, `[pname:${id}]さんを削除します`);
     participant = _.uniq(participant).filter(
-      p => p !== account && p !== "," && p !== ""
+      p => p !== id && p !== "," && p !== ""
     );
     await writeFileAsync("participant", participant);
   } else {
