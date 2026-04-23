@@ -1,5 +1,3 @@
-//削除、追加等の数字化、もしくは文字列化
-
 const _ = require("lodash");
 const { readFileAsync, writeFileAsync } = require("../lib/supabase_file");
 const { sendchatwork, replyMessage } = require("../ctr/message");
@@ -7,7 +5,7 @@ const adminAccountId = process.env.adminAccountId;
 
 // 入力決定
 async function participantRegistration(body, messageId, roomId, accountId) {
-  const participant = _.uniq(body.replace(/^入力決定|\s+/g, "").split(","));
+  const participant = Number(_.uniq(body.replace(/^入力決定|\s+/g, "").split(",")));
   await writeFileAsync("participant", participant);
 }
 
