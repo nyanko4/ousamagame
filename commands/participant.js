@@ -37,7 +37,7 @@ async function participantAdd(body, messageId, roomId, accountId) {
   if (participant.includes(id)) {
     await replyMessage(accountId, roomId, messageId, "既に追加されています");
   } else {
-    await replyMessage(accountId, roomId, messageId, `[pname:${Id}]さんを追加します`);
+    await replyMessage(accountId, roomId, messageId, `[pname:${id}]さんを追加します`);
     participant.push(id);
     participant = _.uniq(participant).filter(p => p !== "" && p !== ",");
     await writeFileAsync("participant", participant);
