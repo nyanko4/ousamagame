@@ -79,7 +79,7 @@ async function ousamagame(body, messageId, roomId, accountId) {
     }
   } catch (error) {
     await replyMessage(accountId, roomId, messageId, `エラー${error.message}`);
-    console.log(error)
+    console.log(error, error.stack)
   }
 }
 
