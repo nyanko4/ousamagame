@@ -22,7 +22,7 @@ async function isFacilitator(accountId) {
 async function isParticipants() {
   try {
     const data = await readFileAsync("participant");
-    return Array.isArray(data) && data.length > 0;
+    return Array.isArray(data) && data.length > 1;
   } catch (error) {
     console.error("ファイル読み込みエラー:", error);
     return false;
@@ -61,7 +61,7 @@ async function ousamagame(body, messageId, roomId, accountId) {
       // 参加者がいるか
       if (cmd.isParticipants) {
         const ok = await isParticipants();
-        if (!ok) return await replyMessage(accountId, roomId, messageId, "参加者がいません");
+        if (!ok) return await replyMessage(accountId, roomId, messageId, "参加者が足りません");
       }
 
       // 進行役かどうか
